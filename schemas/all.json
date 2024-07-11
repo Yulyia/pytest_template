@@ -1,0 +1,28 @@
+{
+  "oneOf": [
+    {
+      "$ref": "Order.json"
+    },
+    {
+      "$ref": "Customer.json"
+    },
+    {
+      "$ref": "Address.json"
+    },
+    {
+      "$ref": "Category.json"
+    },
+    {
+      "$ref": "User.json"
+    },
+    {
+      "$ref": "Tag.json"
+    },
+    {
+      "$ref": "Pet.json"
+    },
+    {
+      "$ref": "ApiResponse.json"
+    }
+  ]
+}

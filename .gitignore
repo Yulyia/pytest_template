@@ -1,0 +1,30 @@
+#### Python ####
+*.py[co]
+################
+
+#### Backups ####
+~*
+#################
+
+#### Local files ####
+local
+djangobb_index/
+config/development.py
+config/sphinxsearch/my_sphinx.conf
+/static_files/
+/static
+media
+#####################
+
+/.idea
+/static
+/virtual
+/build
+/dist
+/data
+/.env
+.coverage
+codeclimate.json
+report.xml
+report.html
+coverage.xml

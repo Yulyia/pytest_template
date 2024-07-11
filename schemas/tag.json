@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "name": {
+      "type": "string"
+    }
+  },
+  "xml": {
+    "name": "tag"
+  },
+  "$schema": "http://json-schema.org/schema#"
+}

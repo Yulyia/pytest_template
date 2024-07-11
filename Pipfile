@@ -1,0 +1,17 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.repo.russianpost.ru/simple/"
+verify_ssl = false
+
+[packages]
+pytest= "==7.2.0"
+allure-pytest= "==2.11.1"
+requests= "2.28.1"
+pytest-html=  "==3.2.0"
+pytest-parallel= "==0.1.1"
+jsonschema= "==4.17.3"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"

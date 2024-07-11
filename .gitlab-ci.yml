@@ -1,0 +1,46 @@
+image: docker.repo.russianpost.ru/python:3.8-slim-buster
+stages:
+  - test
+test:
+  when: manual
+  before_script:
+    - echo "deb http://nexus.repo.russianpost.ru/deb/repository/buster/ buster main" > /etc/apt/sources.list
+    - apt-get update -y > /dev/null
+    - apt-get install curl -y
+    - apt-get install -y zip unzip
+    - apt-get install -y jq
+    - apt-get install -y telnet
+    - curl -k -L http://cert.tools.russianpost.ru/Russian-post-RootCA.crt -o /usr/local/share/ca-certificates/Russian-post-RootCA.crt
+    - update-ca-certificates --fresh > /dev/null
+    - export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+    - pip config set global.index-url https://pypi.repo.russianpost.ru/simple/
+    - pip install --upgrade pip pipenv
+    - rm -r -f ./allure-results
+  cache:
+    paths:
+      - $PIP_CACHE_DIR
+      - $PIPENV_CACHE_DIR
+  variables:
+    PYTHONPATH: $CI_PROJECT_DIR
+    PIP_CACHE_DIR: $CI_PROJECT_DIR/.cache/pip
+    PIPENV_CACHE_DIR: $CI_PROJECT_DIR/.cache/pipenv
+  artifacts:
+    when: always
+    expire_in: 30min
+    paths:
+      - report.html
+      - report.xml
+      - allure-results/
+    reports:
+      junit: report.xml
+  tags:
+    - docker-only
+  script:
+    - pipenv sync --clear
+    - pipenv run pytest --junitxml=report.xml --html=report.html --self-contained-html --alluredir=./allure-results
+    - pipenv --rm
+
+
+
+
+
